@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Robotics_club website 2k21 commit added by aj. commit added by ankush",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "gsap": "^3.6.1"
+  },
   "devDependencies": {
     "css-loader": "^5.2.4",
     "extract-loader": "^5.1.0",
@@ -18,7 +20,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "webpack" : "webpack --config webpack.config.js"
+    "webpack": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",

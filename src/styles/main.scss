@@ -1,6 +1,18 @@
+@use './variables' as variables;
+@use './events_page' as events_section;
+@use './prizes_page' as prizes_page;
+@use './footer_page' as footer_page;
+@use './timeline_page' as timeline;
+@use './hero_page' as hero_page;
+@use './nav' as nav;
+
+
 $red : green;
 
 body{
-    background-color:$red;
-    background-image:url('../images/events_page_bg.svg');
+    width:100%;
+    position:relative;
+    overflow-x:hidden;
+    margin:0px;
+    padding:0px;
 }
