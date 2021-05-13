@@ -16,46 +16,58 @@ const setUpNav = ()=>{
 
 //setup scrolltrigger and perform operation accordingly
 
-function generateTimeline(){
-    ScrollTrigger.matchMedia({
-        "(min-width:900px)":function() {
-            let tl = gsap.timeline({
-                scrollTrigger:{
-                    trigger:"section.timeline-page",
-                    pin:true,
-                    start:"300px top",
-                    end:'+=400',
-                    scrub:1,
-                    onUpdate:({progress, direction})=>{
-                        //change the days and time line here based on the value of the progress
-                        if(progress===1){
-                            return;
-                        }
+class ScrollTimeline{
+    constructor(){
+       this.scrollTimeline =  gsap.timeline({
+            scrollTrigger:{
+                trigger:"section.timeline-page",
+                pin:true,
+                start:"300px top",
+                end:'+=400',
+                scrub:1,
+                onUpdate:({progress, direction})=>{
+                    //change the days and time line here based on the value of the progress
+                    if(progress===1){
+                        return;
                     }
                 }
-            });
+            }
+        });
         
-            tl.to(".f1-car", {
-                motionPath: {
-                    path: "#path",
-                    align: "#path",
-                    alignOrigin: [0.5, 0.5],
-                    autoRotate: true
-                },
-                duration: 5,
-                ease: "power1.inOut",
-            });
-        }
-    })
-    
-
+        
+    }
+    init = (tl_params)=>{
+        this.scrollTimeline.progress(0);
+        this.scrollTimeline.clear();
+        this.scrollTimeline.to(...tl_params);
+    }
+     
 }
 
-
+let new_scroll_timeline = new ScrollTimeline();
 let resize_observer = new ResizeObserver(()=>{
-    console.log("resize_detected");
-    generateTimeline();
+    if(new_scroll_timeline){
+        new_scroll_timeline.init(['.f1-car',{
+            motionPath:{
+                path:'#path',
+                align:'#path',
+                alignOrigin:[0.5,0.5],
+                autoRotate:true
+            },
+            ease:"power1.inOut"
+        }]);
+    }
 });
+// tl.to(".f1-car", {
+//     motionPath: {
+//         path: "#path",
+//         align: "#path",
+//         alignOrigin: [0.5, 0.5],
+//         autoRotate: true
+//     },
+//     duration: 5,
+//     ease: "power1.inOut",
+// });
 resize_observer.observe(document.querySelector('body'));
 
 
